@@ -8,19 +8,41 @@
 module.exports = {
 
   attributes: {
-    doneAt : { type: 'datetime' },
-    name : { type: 'string', required: true },
-    description : { type: 'string' },
-    accepted : { type: 'boolean', default: true },
-    acceptedAt : { type: 'datetime' },
-    private : { type: 'boolean', default: false },
-    suggestedBy : { model:'Person' },
-    owner : { model: 'Person', required: true }
+    doneAt : {
+      type: 'datetime'
+    },
+
+    MainWish: {
+      model: 'CommunityWish',
+      required: true
+    },
+
+    accepted : {
+      type: 'boolean',
+      default: true
+    },
+
+    acceptedAt : {
+      type: 'datetime'
+    },
+
+    private : {
+      type: 'boolean',
+      default: false
+    },
+
+    suggestedBy : {
+      model:'Person'
+    },
+
+    owner : {
+      model: 'Person',
+      required: true
+    }
   },
 
   beforeCreate: function(wish, cb) {
     // SET UP DATE (acceptedAt IF NEEDED)
-
 
     cb();
   },
