@@ -32,6 +32,22 @@ body {
 
 /* Custom Button Styles */
 
+
+.btn-black {
+    border-radius: 0;
+    color: #fff;
+    background-color: rgba(0,0,0,1);
+}
+
+.btn-black:hover,
+.btn-black:focus,
+.btn-black:active {
+    color: #fff;
+    background-color: rgba(0,0,0,1);
+}
+
+
+
 .btn-dark {
     border-radius: 0;
     color: #fff;
