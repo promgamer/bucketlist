@@ -19,7 +19,7 @@ module.exports = {
 
     accepted : {
       type: 'boolean',
-      default: true
+      defaultsTo: true
     },
 
     acceptedAt : {
@@ -28,7 +28,7 @@ module.exports = {
 
     private : {
       type: 'boolean',
-      default: false
+      defaultsTo: false
     },
 
     suggestedBy : {
