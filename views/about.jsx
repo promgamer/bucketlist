@@ -1,14 +1,7 @@
 var React = require('react');
 
-
 var IndexComponent = React.createClass({
-	goToAbout: function (event){
-		//this.trasitionTo("/about", null, {name: "Joao Pinto"});
-		console.log("cenas");
-	},
-
-	render: function() {		
-		console.log(this);
+	render: function() {
 		return (
 			
 				<html>
@@ -17,18 +10,12 @@ var IndexComponent = React.createClass({
 					<link rel="stylesheet" type="text/css" href="/public/css/main.css"/>
 				</head>
 				<body>
-					<h1> Bucket List </h1>
-					<input type="button" onClick={this.goToAbout} value="Click Me!" />
-
+					<h1> Pagina About. Bem vindo {this.props.name} </h1>					
 				</body>
 			</html>
 			
-		);a
+		)
 	}
-
-	
 });
-
-
 
 module.exports = IndexComponent;
