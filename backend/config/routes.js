@@ -41,7 +41,8 @@ module.exports.routes = {
   'put /finishWish' : 'WishController.finishWish',
   'put /acceptWish' : 'WishController.acceptWish',
   'put /makePublic' : 'WishController.makePublic',
-  'put /makePrivate' : 'WishController.makePrivate'
+  'put /makePrivate' : 'WishController.makePrivate',
+  'get /wish/find/:id' : 'WishController.findWithHistory'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
