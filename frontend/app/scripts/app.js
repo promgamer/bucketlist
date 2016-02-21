@@ -20,7 +20,7 @@ angular
   ])
   .config(function ($routeProvider, $httpProvider, $localStorageProvider, $locationProvider) {
     
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({enabled: false});
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
