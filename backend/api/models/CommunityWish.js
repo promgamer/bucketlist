@@ -16,6 +16,16 @@ module.exports = {
 
     description : {
       type: 'string'
+    },
+
+    numberOfCompleted : {
+      type: 'integer',
+      defaultsTo: 0
+    },
+
+    numberOfWish : {
+      type: 'integer',
+      defaultsTo: 0
     }
   }
 };

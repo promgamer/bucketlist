@@ -26,6 +26,9 @@ function changePrivacyPolicy(req, res, bool) {
       })
   }
 }
+
+var Promise = require('bluebird');
+
 /**
  * WishController
  *
@@ -35,35 +38,44 @@ function changePrivacyPolicy(req, res, bool) {
 
 module.exports = {
 
-  findWithHistory: function(req, res){
+  /*findWithHistory: function (req, res) {
 
     var ownerid = req.param('id');
     var i = 0;
 
-    Wish.find({id: ownerid}).populate('owner').populate('suggestedBy').populate('MainWish').exec(function (err, records) {
-        for(i = 0; i < records.length; i++){
-          var mwID = records[i].MainWish;
-          var total;
-          var completed;
+    Wish.find({owner: ownerid}).populate('owner').populate('suggestedBy').populate('MainWish')
+      .then(function (toreturn) {
 
-          Wish.find({MainWish: mwID}).exec(function (err, r1) { //total
-            console.log(err);
-            total = r1.length;
-          });
+        for (i = 0; i < toreturn.length; i++) {
 
-          Wish.find({MainWish: mwID, doneAt: { '!': null }}).exec(function (err, r2) { //completed
-            completed = r2.length;
-          });
+          var mwID = toreturn[i].MainWish.id;
 
-          records[i].total = total;
-          records[i].completed = completed;
+          Promise.all([
+            Wish.find({MainWish: mwID}),
+            Wish.find({MainWish: mwID, doneAt: {'!': null}}),
+            i
+          ])
+            .spread(function (total, completed, index) {
+              toreturn[index].completed;
+              toreturn[index].total;
+            })
+            .catch(function (err) {
+              console.log(err);
+            })
+            .done(function () {
+              console.log("Done!");
+            });
+
         }
+        toreturn[0].fuck = 100;
+        res.send(toreturn);
+      })
+      .catch(function (err) {
+        sails.log.error(err);
+      });
+  },*/
 
-      res.send(records);
-    });
-  },
-
-  finishWish: function(req, res) {
+  finishWish: function (req, res) {
 
     var id = req.param("id");
     var now = new Date();
@@ -77,13 +89,38 @@ module.exports = {
     }
     else {
       Wish.update({id: id}, {doneAt: now})
-        .then(function (wish){
+        .then(function (wish) {
 
-          History.create({action: 'COMPLETED', date: now, owner: wish[0].owner, wish: wish[0].id })
-            .then(function() {
+          History.create({action: 'COMPLETED', date: now, owner: wish[0].owner, wish: wish[0].id})
+            .then(function () {
+
+
+              Promise.all([
+                CommunityWish.find({id: wish[0].MainWish})
+              ])
+                .spread(function(records){
+                  sails.log(records);
+
+                  CommunityWish.update({id: records[0].id}, {numberOfCompleted: records[0].numberOfCompleted+1})
+                    .then (function () {
+
+                  })
+                    .catch(function() {
+
+                      var now = new Date();
+                      sails.log("### CommunityWish numberOfCompleted NOT UPDATED - " + now + " ###");
+                    });
+
+                })
+                .catch(function(err){
+                  console.log(err);
+                })
+                .done(function(){
+                  console.log("Done!");
+                });
 
             })
-            .catch(function() {
+            .catch(function () {
               var now = new Date();
 
               sails.log("### CREATED WISH NOT ADDED TO HISTORY TABLE IN FINISH WISH - " + now + " ###");
@@ -107,7 +144,7 @@ module.exports = {
     }
   },
 
-  acceptWish: function(req, res) {
+  acceptWish: function (req, res) {
 
     var id = req.param("id");
     var now = new Date();
@@ -121,9 +158,40 @@ module.exports = {
     }
     else {
       Wish.update({id: id}, {acceptedAt: now, accepted: true})
-        .then(function (wish){
-          res.status(200);
-          res.send(wish);
+        .then(function (wish) {
+
+
+          Promise.all([
+            CommunityWish.find({id: createdWish.MainWish})
+          ])
+            .spread(function (records) {
+              sails.log(records);
+
+              CommunityWish.update({id: records[0].id}, {numberOfWish: records[0].numberOfWish + 1})
+                .then(function () {
+                  res.status(200);
+                  res.send(wish);
+                })
+                .catch(function () {
+
+                  var now = new Date();
+
+                  sails.log("### CommunityWish numberOfCompleted NOT UPDATED - " + now + " ###");
+                  sails.log("#########################");
+                  res.status(200);
+                  res.send(wish);
+                });
+            })
+            .catch(function (err) {
+              console.log(err);
+              res.status(200);
+              res.send(wish);
+            })
+            .done(function () {
+              console.log("Done!");
+              res.status(200);
+              res.send(wish);
+            });
         })
         .catch(function (err) {
 
@@ -137,11 +205,11 @@ module.exports = {
     }
   },
 
-  makePublic: function(req, res) {
+  makePublic: function (req, res) {
     changePrivacyPolicy(req, res, false);
   },
 
-  makePrivate: function(req, res) {
+  makePrivate: function (req, res) {
     changePrivacyPolicy(req, res, true);
   }
 
