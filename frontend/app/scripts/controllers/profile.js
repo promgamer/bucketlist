@@ -39,7 +39,7 @@ angular.module('bucketlistApp')
       $api.getUserHistory($scope.userInfo.id)
       .then (
         function success (data){
-
+          data = data.reverse();
           $scope.userInfo.history = data;          
           $sessionS.setUser($scope.userInfo);          
           $scope.waitingForHistory = false;
@@ -52,4 +52,3 @@ angular.module('bucketlistApp')
 
 
 
-  
