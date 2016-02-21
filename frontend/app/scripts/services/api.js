@@ -28,8 +28,8 @@ angular.module('bucketlistApp')
     	$http.get(serverURL + "/person/"+ userID)
     		.then(
     			function success(user_info){
-    				$sessionS.setUser(user_info.data[0]);
-    				deferred.resolve(user_info.data[0]);
+    				$sessionS.setUser(user_info.data);
+    				deferred.resolve(user_info.data);
     			},
     			function error(err){
     				deferred.reject(err);

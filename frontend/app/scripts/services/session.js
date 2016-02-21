@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bucketlistApp')
-	.service('SessionService', ['$localStorage', '$location', function($localStorage, $location){
+	.service('SessionService', ['$localStorage', function($localStorage){
 
 		this.setUser = function ( user ) {
 			$localStorage.userInfo = user;
