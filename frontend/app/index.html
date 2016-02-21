@@ -29,7 +29,7 @@
     <!-- Site wrapper -->
     <div class="wrapper">
 
-      <header class="main-header bg-blue">
+      <header id="header" class="main-header bg-blue">
         <!-- Logo -->
         <div class="logo bg-blue" >
           <!-- logo for regular state and mobile devices -->
@@ -38,7 +38,7 @@
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top bg-blue" role="navigation">
           <!-- Sidebar toggle button-->
-         
+
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- User Account: style can be found in dropdown.less -->
@@ -66,7 +66,7 @@
                     </div>
                   </li>
                 </ul>
-              </li>              
+              </li>
             </ul>
           </div>
         </nav>
@@ -78,28 +78,19 @@
       <!-- =============================================== -->
 
       <!-- Content Wrapper. Contains page content -->
-     <div ng-view="" class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        
+     <div id="page" ng-view="" class="content-wrapper">
       </div><!-- /.content-wrapper -->
 
-      <footer class="main-footer">
+      <footer id="footer" class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
+          <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016.</strong> Made with <i class="fa fa-heart text-danger"></i> and lot of <i class="fa fa-coffee"></i> in Portugal.
       </footer>
-
-      <!-- Control Sidebar -->
-      
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
-    
     </div><!-- ./wrapper -->
 
-   
-    
+
+
     <!-- SlimScroll -->
     <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
@@ -120,6 +111,19 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/services/api.js"></script>
-    
+
+  <script>
+    var footer = $("#footer").height();
+    var header = $("#header").height();
+    var height = $(window).height() - footer - header - 31;
+    $("#page").height(height);
+    $( window ).resize(function() {
+      var footer = $("#footer").height();
+      var header = $("#header").height();
+      var height = $(window).height() - footer - header - 31;
+      $("#page").height(height);
+    });
+  </script>
+
   </body>
 </html>
