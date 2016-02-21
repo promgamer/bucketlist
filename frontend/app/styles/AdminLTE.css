@@ -10,6 +10,16 @@
  * Core: General Layout Style
  * -------------------------
  */
+
+/*############## CUSTOM */
+
+div.content-wrapper {
+  min-height: calc( 100vh - 101px ) !important;
+}
+
+/**/
+
+
 html,
 body {
   min-height: 100%;
