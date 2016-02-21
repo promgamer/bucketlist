@@ -17,7 +17,7 @@ div.content-wrapper {
   min-height: calc( 100vh - 101px ) !important;
 }
 
-div.logo {
+a.logo {
   cursor: pointer;
 }
 
