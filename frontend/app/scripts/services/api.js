@@ -41,7 +41,7 @@ angular.module('bucketlistApp')
     this.getUserWishes = function(userID){
     	var deferred = $q.defer();
 
-    	$http.get( serverURL + "/wish" , angular.extend({},{ where: { owner: userID} }))
+    	$http.get( serverURL + '/wish?where={"owner":' + userID +"}")
     		.then(
     			function success(data){
     				deferred.resolve(data.data);

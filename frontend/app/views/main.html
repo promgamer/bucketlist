@@ -42,45 +42,18 @@
             </div><!-- /.box-header -->
             <div class="box-body">
 
-              <div class="row text-center" style="margin-top: 10px">
+              <div ng-repeat="wish in userInfo.bucketList | filter:{ doneAt: null }" class="row text-center" style="margin-top: 10px">
                 <div class="col-xs-3 text-normal">
                   <span class="label label-success hoverable"><i class="fa fa-check"></i> Done</span>
                   <span class="label label-danger hoverable"><i class="fa fa-close"></i> Cancel</span>
                 </div>
                 <div class="col-md-3">
-                  <b>Go to Eiffel Tower</b>
+                  <b>{{wish.MainWish.name}}</b>
                 </div>
                 <div class="col-md-6">
-                  Aqui vai a super descrição catita.
+                 {{wish.MainWish.description}}
                 </div>
               </div>
-
-              <div class="row text-center" style="margin-top: 10px">
-                <div class="col-xs-3 text-normal">
-                  <span class="label label-success hoverable"><i class="fa fa-check"></i> Done</span>
-                  <span class="label label-danger hoverable"><i class="fa fa-close"></i> Cancel</span>
-                </div>
-                <div class="col-md-3">
-                  <b>Go to Eiffel Tower</b>
-                </div>
-                <div class="col-md-6">
-                  Aqui vai a super descrição catita.
-                </div>
-              </div>
-
-              <div class="row text-center" style="margin-top: 10px">
-                <div class="col-xs-3 text-normal">
-                  <span class="label label-success hoverable"><i class="fa fa-check"></i> Done</span>
-                  <span class="label label-danger hoverable"><i class="fa fa-close"></i> Cancel</span>
-                </div>
-                <div class="col-md-3">
-                  <b>Go to Eiffel Tower</b>
-                </div>
-                <div class="col-md-6">
-                  Aqui vai a super descrição catita.
-                </div>
-              </div>
-
 
             </div><!-- /.box-body -->
           </div>
