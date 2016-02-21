@@ -28,6 +28,11 @@ module.exports = {
     password: {
       type: 'string',
       required: true
+    },
+
+    wishes: {
+      collection: 'Wish',
+      via: 'owner'
     }
 
   },
