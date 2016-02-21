@@ -19,7 +19,8 @@
                         <h5 class="widget-user-desc">Member since {{userInfo.createdAt.substring(0,10)}}</h5>
                       </div>
                       <div class="widget-user-image">
-                        <img class="img-circle" src='{{userInfo.photoURL}}' alt="User Avatar">
+                        <img ng-if="!userInfo.photoURL" class="img-circle" src='./../images/user_logo.png' alt="User Avatar">
+                        <img ng-if="userInfo.photoURL" class="img-circle" src='{{userInfo.photoURL}}' alt="User Avatar">
                       </div>
                       <div class="box-footer">
                         <div class="row">
@@ -156,7 +157,7 @@
                 <div class="box-header">
                   <i class="ion ion-clock"></i>
                   <h3 class="box-title">Timeline</h3>
-                  <i ng-if="waitingForHistory" class="fa fa-spinner fa-pulse"></i>
+                  <i ng-show="waitingForHistory" class="fa fa-spinner fa-pulse"></i>
                 </div>
                 <div class="box-body">
                   <div class=""id="timeline">
