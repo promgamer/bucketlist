@@ -32,7 +32,8 @@ module.exports = {
     },
 
     suggestedBy : {
-      model:'Person'
+      model:'Person',
+      unique: true
     },
 
     owner : {

@@ -53,12 +53,13 @@
                 <div class="box-header">
                   <i class="ion ion-clipboard"></i>
                   <h3 class="box-title">Bucket List</h3>
+                  <i ng-if="waitingForBucketList == true" class="fa fa-spinner fa-pulse"></i>
 
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <ul class="todo-list ui-sortable" ng-init="userInfo.bucketlist">
+                  <ul class="todo-list ui-sortable" >
 
-                    <li ng-repeat="wish in userInfo.bucketlist">
+                    <li ng-repeat="wish in userInfo.bucketList">
 
                       <!-- checkbox -->
 
@@ -153,7 +154,7 @@
                 <div class="box-header">
                   <i class="ion ion-clock"></i>
                   <h3 class="box-title">Timeline</h3>
-
+                  <i ng-if="waitingForHistory" class="fa fa-spinner fa-pulse"></i>
                 </div>
                 <div class="box-body">
                   <div class=""id="timeline">
@@ -168,8 +169,9 @@
                       <!-- /.timeline-label -->
                       <!-- timeline item -->
                       <!-- Only show if is not his profile -->
-                      <li>
-                        <i class="fa fa-plus bg-yellow"></i>
+                      <li  ng-repeat="timelineItem in userInfo.history">
+
+                        <i ng-if="timelineItem" class="fa fa-plus bg-yellow"></i>
                         <div class="timeline-item">
                           <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
                           <h3 class="timeline-header"><a href="#">Andar de cavalo</a> was added to the list</h3>
