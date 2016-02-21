@@ -2,9 +2,8 @@
 
 angular.module('bucketlistApp')
 	.controller('UserBadgeCtrl', ['$scope', 'SessionService', function ($scope, $sessionS){
-		$scope.info = $sessionS.getUser();
+		this.user_info = $sessionS.getUser();
+		$scope.info = this.user_info;
 
 		$scope.activeSession = $scope.info === null ? true : false;
-
-		console.log($scope);
 	}]);
