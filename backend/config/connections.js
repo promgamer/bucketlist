@@ -31,8 +31,8 @@ module.exports.connections = {
   localDiskDb: {
     adapter: 'sails-postgresql',
     host: 'localhost',
-    user: 'postgres',
-    password: 'barcelos',
+    user: 'admin',
+    password: 'admin',
     database: 'Bucketlist'
   }
 };
