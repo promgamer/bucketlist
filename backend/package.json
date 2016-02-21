@@ -23,7 +23,8 @@
     "sails": "~0.12.1",
     "sails-disk": "~0.10.9",
     "sails-postgresql": "^0.10.14",
-    "bcrypt-nodejs": "0.0.3"
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "~2.10.2"
   },
   "scripts": {
     "debug": "node debug app.js",
