@@ -8,10 +8,14 @@
  * Controller of the bucketlistApp
  */
 angular.module('bucketlistApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', ['$scope', function ($scope) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-  });
+
+    $scope.go = function ( path ) {
+	  $location.path( path );
+	};
+  }]);

@@ -31,10 +31,10 @@
 
       <header id="header" class="main-header bg-blue">
         <!-- Logo -->
-        <div class="logo bg-blue" >
+        <a class="logo bg-blue" href="#/">
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"> Bucket List </span>
-        </div>
+          <span class="logo-lg" > Bucket List </span>
+        </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top bg-blue" role="navigation">
           <!-- Sidebar toggle button-->
@@ -53,7 +53,7 @@
                     <img src={{info.photoURL}} class="img-circle" alt="User Image">
                     <p>
                       {{info.name}}
-                      <small>Member since {{info.createdAt | date:'medium'}}</small>
+                      <small>Member since {{info.createdAt | date:'longDate'}}</small>
                     </p>
                   </li>
                    <!-- Menu Footer-->

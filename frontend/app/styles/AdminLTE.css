@@ -25,6 +25,10 @@ div.text-normal span{
   font-size: 100% !important;
 }
 
+a.logo {
+  cursor: pointer;
+}
+
 /**/
 
 

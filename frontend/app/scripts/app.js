@@ -42,5 +42,5 @@ angular
         redirectTo: '/'
       });
 
-      $localStorageProvider.set('userInfo', { name: 'John Doe', pictureURL: 'http://romston.com/wp-posts/13-05-13-Dog_and_his_Burger/Dog_and_his_Burger_Img01.jpg', id:1000, createdAt:"2016-02-20T22:52:33.000Z" });
+      $localStorageProvider.set('userInfo', { name: 'Munchie Boggie', photoURL: 'http://romston.com/wp-posts/13-05-13-Dog_and_his_Burger/Dog_and_his_Burger_Img01.jpg', id:1000, createdAt:"2016-02-20T22:52:33.000Z" });
   });
