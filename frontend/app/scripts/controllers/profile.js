@@ -4,29 +4,7 @@ angular.module('bucketlistApp')
   .controller('ProfileCtrl', ['$scope','$routeParams', '$timeout','API', 'SessionService', function ($scope, $routeParams, $timeout, $api, $sessionS) {
   	var foreign = true;
 
-  	$scope.waitingForBucketList = true;
-    $scope.waitingForHistory = true;
-
-  	if( $routeParams.id ) {
-  		$api.getUserProfile($routeParams.id)
-  			.then(function(res){
-  				$scope.userInfo = res;
-  				console.log(res);
-  			}, function(err){
-  				window.alert(err.status +": "+err.data);
-  				$scope.userInfo = $sessionS.getUser();
-  				$timeout(api_fetch, 1);
-  			});
-
-	  	foreign = true;
-  	}
-  	else {
-  		$scope.userInfo = $sessionS.getUser();
-  		$timeout(api_fetch, 1);
-  		foreign = false;
-  	}
-
-    function api_fetch(){ 
+  	function api_fetch(){ 
 	    // GET bucket list from BD
 	  	$api.getUserWishes($scope.userInfo.id)
 	      .then (
@@ -62,7 +40,7 @@ angular.module('bucketlistApp')
 		$api.getUserHistory($scope.userInfo.id)
 			.then (
 			function success (data){
-
+				console.log(2);
 			  $scope.userInfo.history = data;          
 			  if(!foreign) {
 	          	$sessionS.setUser($scope.userInfo);
@@ -75,8 +53,28 @@ angular.module('bucketlistApp')
 			});
 	}
 
+  	$scope.waitingForBucketList = true;
+    $scope.waitingForHistory = true;
+
+  	if( $routeParams.id ) {
+  		$api.getUserProfile($routeParams.id)
+  			.then(function(res){
+  				$scope.userInfo = res;
+  				api_fetch();
+  			}, function(err){
+  				window.alert(err.status +": "+err.data);
+  				$scope.userInfo = $sessionS.getUser();
+  			});
+
+	  	foreign = true;
+  	}
+  	else {
+  		$scope.userInfo = $sessionS.getUser();
+  		api_fetch();
+  		foreign = false;
+  	}
+
   }]);
 
 
 
-  

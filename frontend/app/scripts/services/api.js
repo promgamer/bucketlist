@@ -32,7 +32,7 @@ angular.module('bucketlistApp')
     				deferred.resolve(user_info.data);
     			},
     			function error(err){
-    				deferred.reject(err);
+     				deferred.reject(err);
     			});
 
 		return deferred.promise;

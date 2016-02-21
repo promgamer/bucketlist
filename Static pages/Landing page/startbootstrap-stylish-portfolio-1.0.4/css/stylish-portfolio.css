@@ -36,6 +36,17 @@ body {
 
 }
 
+
+
+.logo-homepage {
+    cursor: pointer;
+    background-image: url('../img/logo_bucketlist.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center;
+    min-height: 130px;
+}
+
 /* Custom Button Styles */
 
 .side-margin-and-padding-10 {
