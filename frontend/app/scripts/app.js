@@ -18,7 +18,10 @@ angular
     'ngTouch',
     'ngStorage'
   ])
-  .config(function ($routeProvider, $httpProvider, $localStorageProvider) {
+  .config(function ($routeProvider, $httpProvider, $localStorageProvider, $locationProvider) {
+    
+    $locationProvider.html5Mode(true);
+
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
