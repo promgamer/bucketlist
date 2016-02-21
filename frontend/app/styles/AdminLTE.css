@@ -17,6 +17,14 @@ div.content-wrapper {
   min-height: calc( 100vh - 101px ) !important;
 }
 
+.hoverable {
+  cursor: pointer;
+}
+
+div.text-normal span{
+  font-size: 100% !important;
+}
+
 /**/
 
 
@@ -1536,7 +1544,7 @@ a:focus {
 .box {
   position: relative;
   border-radius: 3px;
-  background: #ffffff;
+  background: rgba(230,230,230,.9);
   border-top: 3px solid #d2d6de;
   margin-bottom: 20px;
   width: 100%;
