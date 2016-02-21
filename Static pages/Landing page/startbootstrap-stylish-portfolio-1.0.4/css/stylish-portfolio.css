@@ -38,6 +38,10 @@ body {
 
 /* Custom Button Styles */
 
+.side-margin-and-padding-10 {
+    margin: 0px 10px;
+    /*padding: 0px 2px;*/
+}
 
 .btn-black {
     border-radius: 0;
