@@ -18,7 +18,10 @@ angular
     'ngTouch',
     'ngStorage'
   ])
-  .config(function ($routeProvider, $httpProvider, $localStorageProvider) {
+  .config(function ($routeProvider, $httpProvider, $localStorageProvider, $locationProvider) {
+    
+    $locationProvider.html5Mode(true);
+
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
@@ -42,6 +45,7 @@ angular
         redirectTo: '/'
       });
 
+
       $localStorageProvider.set('userInfo', { photoURL: "https://scontent.flis1-1.fna.fbcdn.net/hphotos-xpa1/v/t1.0-9/11181849_984802091532539_3862292596095526118_n.jpg?oh=7ef55512a7f5048044eb6b1a7b1795e9&oe=5754E5C9",
                                               name: "Miguel Poeira",
                                               email: "miguelfcunha@gmail.com",
@@ -50,4 +54,5 @@ angular
                                               createdAt: "2016-02-20T22:52:33.000Z",
                                               updatedAt: "2016-02-20T22:52:33.000Z" 
                                             });
+
   });

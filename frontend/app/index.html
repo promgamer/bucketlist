@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> Bucket List</title>
@@ -31,10 +32,10 @@
 
       <header id="header" class="main-header bg-blue">
         <!-- Logo -->
-        <div class="logo bg-blue" >
+        <a class="logo bg-blue" href="/">
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"> Bucket List </span>
-        </div>
+          <span class="logo-lg" > Bucket List </span>
+        </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top bg-blue" role="navigation">
           <!-- Sidebar toggle button-->
@@ -53,13 +54,13 @@
                     <img src={{info.photoURL}} class="img-circle" alt="User Image">
                     <p>
                       {{info.name}}
-                      <small>Member since {{info.createdAt | date:'medium'}}</small>
+                      <small>Member since {{info.createdAt | date:'longDate'}}</small>
                     </p>
                   </li>
                    <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#/profile" class="btn btn-default btn-flat">Profile</a>
+                      <a href="/profile" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
                       <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -112,6 +113,6 @@
         <script src="scripts/services/api.js"></script>
         <script src="scripts/controllers/profile.js"></script>
         <script src="scripts/controllers/userBadge.js"></script>
-  
+
   </body>
 </html>
