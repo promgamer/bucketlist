@@ -42,5 +42,12 @@ angular
         redirectTo: '/'
       });
 
-      $localStorageProvider.set('userInfo', { name: 'John Doe', pictureURL: 'http://romston.com/wp-posts/13-05-13-Dog_and_his_Burger/Dog_and_his_Burger_Img01.jpg', id:1000, createdAt:"2016-02-20T22:52:33.000Z" });
+      $localStorageProvider.set('userInfo', { photoURL: "https://scontent.flis1-1.fna.fbcdn.net/hphotos-xpa1/v/t1.0-9/11181849_984802091532539_3862292596095526118_n.jpg?oh=7ef55512a7f5048044eb6b1a7b1795e9&oe=5754E5C9",
+                                              name: "Miguel Poeira",
+                                              email: "miguelfcunha@gmail.com",
+                                              password: "password",
+                                              id: 1,
+                                              createdAt: "2016-02-20T22:52:33.000Z",
+                                              updatedAt: "2016-02-20T22:52:33.000Z" 
+                                            });
   });

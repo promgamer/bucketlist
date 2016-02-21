@@ -15,29 +15,29 @@
                   <div class="box box-widget widget-user">
                       <!-- Add the bg color to the header using any of the bg-* classes -->
                       <div class="widget-user-header bg-blue">
-                        <h3 class="widget-user-username">Alexander Pierce</h3>
+                        <h3 class="widget-user-username"> {{userInfo.name}} </h3>
                         <h5 class="widget-user-desc">Founder &amp; CEO</h5>
                       </div>
                       <div class="widget-user-image">
-                        <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+                        <img class="img-circle" src='{{userInfo.photoURL}}' alt="User Avatar">
                       </div>
                       <div class="box-footer">
                         <div class="row">
                           <div class="col-sm-4 border-right">
                             <div class="description-block">
-                              <h5 class="description-header">3,200</h5>
+                              <h5 class="description-header">{{totalBucketListItems}}</h5>
                               <span class="description-text">Bucket List total items</span>
                             </div><!-- /.description-block -->
                           </div><!-- /.col -->
                           <div class="col-sm-4 border-right">
                             <div class="description-block">
-                              <h5 class="description-header">13,000</h5>
+                              <h5 class="description-header">{{numberCompleted}}</h5>
                               <span class="description-text">Acompplished</span>
                             </div><!-- /.description-block -->
                           </div><!-- /.col -->
                           <div class="col-sm-4">
                             <div class="description-block">
-                              <h5 class="description-header">35</h5>
+                              <h5 class="description-header">{{numberToDo}}</h5>
                               <span class="description-text">To be completed</span>
                             </div><!-- /.description-block -->
                           </div><!-- /.col -->
@@ -56,53 +56,25 @@
 
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <ul class="todo-list ui-sortable">
-                    <li>
+                  <ul class="todo-list ui-sortable" ng-init="userInfo.bucketlist">
+
+                    <li ng-repeat="wish in userInfo.bucketlist">
 
                       <!-- checkbox -->
-                      <i class="fa fa-ellipsis-h fa-2x text-warning pull-right"></i>
+
+                      <!--<i ng-if="wish.doneAt == null" class="fa fa-spinner fa-pulse fa-2x text-warning pull-right"></i> -->
+
+                      
+                      <small ng-if="wish.doneAt !== null" class="label label-success pull-right"><i class="fa fa-check-circle fa-2x"></i> Completed</small>
+
                       <!-- todo text -->
-                      <span class="text">Climb Everest</span>
+                      <span class="text">{{wish.MainWish.name}}</span>
                       <!-- Emphasis label -->
                       <small class="label label-primary"><i class="fa  fa-info-circle"></i> 20/100 users completed this wish </small>
                       <!-- General tools such as edit or delete-->
 
                     </li>
-                    <li>
-
-                      <i class="fa fa-check-circle fa-2x text-success pull-right"></i>
-                      <span class="text">Make the theme responsive</span>
-                      <small class="label label-primary"><i class="fa  fa-info-circle"></i> 50/1000 users completed this wish </small>
-
-                    </li>
-                    <li>
-
-                      <i class="fa fa-check-circle fa-2x text-success pull-right"></i>
-                      <span class="text">Make the theme responsive</span>
-                      <small class="label label-primary"><i class="fa  fa-info-circle"></i> 70/200 users completed this wish </small>
-
-                    </li>
-                    <li>
-
-                      <i class="fa fa-check-circle fa-2x text-success pull-right"></i>
-                      <span class="text">Make the theme responsive</span>
-                      <small class="label label-primary"><i class="fa  fa-info-circle"></i> 80/85 users completed this wish </small>
-
-                    </li>
-
-                    <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name="">
-                      <span class="text">Let theme shine like a star</span>
-                      <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                      <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
+                    
                   </ul>
                 </div><!-- /.box-body -->
 
