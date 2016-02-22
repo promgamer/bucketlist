@@ -34,8 +34,7 @@ module.exports = {
     },
 
     suggestedBy: {
-      model: 'Person',
-      unique: true
+      model: 'Person'
     },
 
     owner: {
@@ -51,7 +50,12 @@ module.exports = {
 
   beforeCreate: function (wish, cb) {
     // SET UP DATE (acceptedAt IF NEEDED)
-
+    /*
+     if(wish.suggestedBy != null)
+     {
+     wish.acceptedAt = new Date();
+     }
+     */
     cb();
   },
 
@@ -61,24 +65,31 @@ module.exports = {
       CommunityWish.findOne({id: createdWish.MainWish}),
       History.create({action: 'CREATED', date: createdWish.createdAt, owner: createdWish.owner, wish: createdWish.id})
     ])
-      .then(function (cw){
+      .then(function (cw) {
         if (createdWish.accepted) {
 
-          Wish.find({MainWish: createdWish.MainWish, active: true, accepted: true}).then(
-            function(res){
+          Wish.find({MainWish: createdWish.MainWish, active: true, accepted: true})
+            .then(function (res) {
               cw[0].numberOfWish = res.length;
-              cw[0].save(function(err, user) {
+              cw[0].save(function (err, user) {
               });
+              cb();
+            })
+            .catch(function (err) {
+              sails.log(err);
               cb();
             });
         }
+        else {
+          cb();
+        }
       })
-        .catch(function (err) {
+      .catch(function (err) {
         sails.log(err);
         sails.log("### ERRO BRUTAL ###");
         sails.log("#########################");
         cb();
-    });
+      });
   }
 };
 

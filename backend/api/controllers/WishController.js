@@ -118,10 +118,12 @@ module.exports = {
       ])
       .then(function (wish) {
 
-        History.create({action: 'REMOVED', date: now, owner: wish[0].owner, wish: id}.then(function(){
+        sails.log(wish);
+
+        History.create({action: 'REMOVED', date: now, owner: wish[0][0].owner, wish: id}).then(function(){
           res.status(200);
           res.send(wish);
-        }));
+        });
       })
       .catch(function (err) {
         res.send(err);
@@ -136,6 +138,23 @@ module.exports = {
   mostUsedWish: function(req, res) {
 
     CommunityWish.find({sort: 'numberOfWish DESC', limit: 10}).exec(function (err, suggestions)
+    {
+      if(err) {
+        res.status(400);
+        return res.negotiate(err);
+      }
+      res.status(200);
+      return res.send(suggestions);
+    });
+  },
+
+  suggestions: function(req, res) {
+
+    var id = req.param("id");
+    var now = new Date();
+
+
+    Wish.find({accepted: false, suggestedBy: { '!': null }}).exec(function (err, suggestions)
     {
       if(err) {
         res.status(400);

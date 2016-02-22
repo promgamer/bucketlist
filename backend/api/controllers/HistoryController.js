@@ -29,7 +29,7 @@ module.exports = {
 
     var owner = req.param('owner');
 
-    History.find({owner: owner}).populate('owner').then(function(records) {
+    History.find({owner: owner}).sort('date DESC').populate('owner').then(function(records) {
       var objs = [];
 
       for(i = 0; i < records.length; i++){

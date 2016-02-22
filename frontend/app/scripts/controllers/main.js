@@ -14,7 +14,19 @@ angular.module('bucketlistApp')
 
     $scope.wishes = ["merda","marmelada", "moveis", "armas"];
     $scope.removeUserWish = function (idWish) {
+    	$scope.waitingForBucketList = true;
 		$api.removeUserWish(idWish)
+		.then(function success(data) {
+			updateUserWishes();
+			}
+
+		);
+		
+	};
+
+	$scope.completedWish = function (idWish) {
+    	$scope.waitingForBucketList = true;
+		$api.finishWish(idWish)
 		.then(function success(data) {
 			updateUserWishes();
 			}
@@ -28,6 +40,7 @@ angular.module('bucketlistApp')
 		var wishID = getWishID($scope.wishName, $scope.wishes);
 		if( wishID !== -1 )
 		{
+			$scope.waitingForBucketList = true;
 			$api.addUserWish($scope.userInfo.id,wishID)
 			.then(function success(data) {
 				updateUserWishes();
@@ -36,8 +49,21 @@ angular.module('bucketlistApp')
 			);
 			
 		}
-		else console.log("criar nova");
+		else 
+			{
+				console.log("criar nova");
+			}
 	};
+
+	$scope.add = function (wishID) {
+			$scope.waitingForBucketList = true;
+			$api.addUserWish($scope.userInfo.id,wishID)
+			.then(function success(data) {
+				updateUserWishes();
+				}
+
+			);
+	}
     
 
 	function updateUserWishes() {
@@ -47,10 +73,10 @@ angular.module('bucketlistApp')
 	      .then (
 	        function success (data){
 	        	//console.log(data);
-
+	          $scope.waitingForBucketList = false;
 	          $scope.userInfo.bucketList = data;
 	          //$sessionS.setUser($scope.userInfo);
-	          $scope.waitingForBucketList = false;
+	          
 	          //$scope.$apply();
 	        },
 	        function error (err){
