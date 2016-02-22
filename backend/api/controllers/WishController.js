@@ -144,6 +144,20 @@ module.exports = {
     }
   },
 
+  mostUsedWish: function(req, res) {
+    var now = new Date();
+
+    CommunityWish.find({sort: 'numberOfWish DESC', limit: 10}).exec(function (err, suggestions)
+    {
+      if(err) {
+        res.status(400);
+        return res.negotiate(err);
+      }
+      res.status(200);
+      return res.send(suggestions);
+    });
+  },
+
   acceptWish: function (req, res) {
 
     var id = req.param("id");
