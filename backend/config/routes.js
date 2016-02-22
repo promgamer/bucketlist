@@ -38,7 +38,7 @@ module.exports.routes = {
 
 
   /* WISH CONTROLLER ------------------------------------------------------*/
-  'put /finishWish' : 'WishController.finishWish',
+  'put /finishWish/:id' : 'WishController.finishWish',
   'put /acceptWish' : 'WishController.acceptWish',
   'put /makePublic' : 'WishController.makePublic',
   'put /makePrivate' : 'WishController.makePrivate',
