@@ -68,7 +68,6 @@ angular.module('bucketlistApp')
     
 
 	function updateUserWishes() {
-		console.log("updating bucketList");
 		$scope.waitingForBucketList = true;
 		$api.getUserWishes($scope.userInfo.id)
 	      .then (
@@ -82,6 +81,40 @@ angular.module('bucketlistApp')
 	        },
 	        function error (err){
 	          $scope.waitingForBucketList = false;
+	          console.error(err);
+	        });
+	}
+
+	function updateMySuggestions() {
+		
+		$api.mySuggestions($scope.userInfo.id)
+	      .then (
+	        function success (data){
+	        	//console.log(data);
+	          $scope.mySuggestions = data;
+	          //$sessionS.setUser($scope.userInfo);
+	          
+	          //$scope.$apply();
+	        },
+	        function error (err){
+	          $scope.waitingForBucketList = false;
+	          console.error(err);
+	        });
+	}
+
+	function updateMostUsedWish() {
+		
+		$api.mostUsedWish()
+	      .then (
+	        function success (data){
+	        	//console.log(data);
+	          $scope.mostUsedWish = data;
+	          //$sessionS.setUser($scope.userInfo);
+	          
+	          //$scope.$apply();
+	        },
+	        function error (err){
+	          
 	          console.error(err);
 	        });
 	}
@@ -101,6 +134,8 @@ angular.module('bucketlistApp')
         });
 
        updateUserWishes();
+       updateMostUsedWish();
+       updateMySuggestions();
   }]);
 
 function getWishID(obj,a) { // -1 if not exists

@@ -190,5 +190,36 @@ angular.module('bucketlistApp')
 
     	return deferred.promise;
     };
+
+    this.mySuggestions = function(userID){
+        var deferred = $q.defer();
+
+        $http.get(serverURL + "/mySuggestions/"+userID)
+            .then(
+                function success(data){
+                    deferred.resolve(data.data);
+                },
+                function error(err){
+                    deferred.reject(err);
+                });
+
+        return deferred.promise;
+    };
+
+    this.mostUsedWish = function(userID){
+        var deferred = $q.defer();
+
+        $http.get(serverURL + "/mostUsedWish")
+            .then(
+                function success(data){
+                    deferred.resolve(data.data);
+                },
+                function error(err){
+                    deferred.reject(err);
+                });
+
+        return deferred.promise;
+    };
+
   }]
  );

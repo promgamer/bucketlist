@@ -113,29 +113,15 @@
             <div class="box-body">
               <a href="#/profile" class="btn btn-block btn-info">My Profile</a>
               <h3>Sugested for you</h3>
-              <div class="box">
+              <div ng-repeat="item in mySuggestions" class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Climb Everest</h3>
+                  <h3 class="box-title">{{item.MainWish.name}}</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  Sugested by <a href="#/profile?id=2">cenas</a>
+                  Sugested by <a href="#/profile?id={{item.suggestedBy.id}}">{{item.suggestedBy.name}}</a>
                 </div><!-- /.box-body -->
               </div>
-              <div class="box">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Climb Everest</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  Sugested by <a hhref="#/profile?id=2">cenas</a>
-                </div><!-- /.box-body -->
-              </div>
-              <div class="box">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Climb Everest</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  Sugested by <a href="#/profile?id=2">cenas</a>
-                </div><!-- /.box-body -->
+              <!-- /.box-body -->
               </div>
               <h3>Our top wishes...</h3>
               <div>
@@ -146,8 +132,8 @@
                       <div class="info-box bg-aqua">
                         <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>
                         <div class="info-box-content">
-                          <span class="info-box-text">Climb Everest</span>
-                          <span class="info-box-number">41,410 have this wish</span>
+                          <span class="info-box-text">{{mostUsedWish[0].name}}</span>
+                          <span class="info-box-number">{{mostUsedWish[0].numberOfWish}} have this wish</span>
                           <div class="progress">
                             <div class="progress-bar" style="width: 100%"></div>
                           </div>
@@ -156,11 +142,12 @@
                           </span>
                         </div><!-- /.info-box-content -->
                       </div>
+                      
                       <div class="info-box bg-aqua">
                         <span class="info-box-icon"><i class="fa fa-flag-checkered"></i></span>
                         <div class="info-box-content">
-                          <span class="info-box-text">Cenas cenas</span>
-                          <span class="info-box-number">41,410 completed this wish</span>
+                          <span class="info-box-text">{{mostUsedWish[1].name}}</span>
+                          <span class="info-box-number">{{mostUsedWish[1].numberOfCompleted}} completed this wish</span>
                           <div class="progress">
                             <div class="progress-bar" style="width: 100%"></div>
                           </div>
@@ -169,6 +156,35 @@
                           </span>
                         </div><!-- /.info-box-content -->
                       </div>
+                      
+                      <div class="info-box bg-aqua">
+                        <span class="info-box-icon"><i class="fa fa-flag-checkered"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">{{mostUsedWish[2].name}}</span>
+                          <span class="info-box-number">{{mostUsedWish[2].numberOfCompleted}} completed this wish</span>
+                          <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                          </div>
+                          <span class="progress-description">
+                            Least Completed Wish
+                          </span>
+                        </div><!-- /.info-box-content -->
+                      </div>
+
+                       <div class="info-box bg-red">
+                        <span class="info-box-icon"><i class="fa fa-bug"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">App With Bugs</span>
+                          <span class="info-box-number">Cannot count the number of them</span>
+                          <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                          </div>
+                          <span class="progress-description">
+                           At least we tried
+                          </span>
+                        </div><!-- /.info-box-content -->
+                      </div>
+
                   
                     </div>
                 </div><!-- /.box -->
