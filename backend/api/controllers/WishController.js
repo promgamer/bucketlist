@@ -118,10 +118,12 @@ module.exports = {
       ])
       .then(function (wish) {
 
-        History.create({action: 'REMOVED', date: now, owner: wish[0].owner, wish: id}.then(function(){
+        sails.log(wish);
+
+        History.create({action: 'REMOVED', date: now, owner: wish[0][0].owner, wish: id}).then(function(){
           res.status(200);
           res.send(wish);
-        }));
+        });
       })
       .catch(function (err) {
         res.send(err);
