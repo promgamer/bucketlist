@@ -9,11 +9,16 @@ angular.module('bucketlistApp')
     this.login = function(email, password){
     	var deferred = $q.defer();
 
-    	$http.get(serverURL + '/person?where={"email": ' + email + ', "password": ' + password + '}')
+    	$http.get(serverURL + '/person?where={"email":"' + email + '","password":"' + password + '"}')
     		.then(
     			function success(user_info){
-    				$sessionS.setUser(user_info.data);
-    				deferred.resolve(user_info.data);
+    				if(user_info.data.length === 1 ){
+	    				$sessionS.setUser(user_info.data[0]);
+	    				deferred.resolve(user_info.data[0]);
+	    			}
+	    			else {
+	    				deferred.reject("Authentication failed!");
+	    			}
     			},
     			function error(err){
     				deferred.reject(err);

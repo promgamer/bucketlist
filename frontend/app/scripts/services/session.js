@@ -2,9 +2,10 @@
 
 angular.module('bucketlistApp')
 	.service('SessionService', ['$localStorage', function($localStorage){
-
+		console.log($localStorage);
 		this.setUser = function ( user ) {
 			$localStorage.userInfo = user;
+			$localStorage.$apply();
 		};
 
 		this.getUser = function () {
@@ -13,6 +14,7 @@ angular.module('bucketlistApp')
 
 		this.logout = function () {
 			$localStorage.$reset();
+			$localStorage.$apply();
 		};
 
 	}]);
