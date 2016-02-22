@@ -18,5 +18,17 @@
   {
     "name": "Graduate in Computer Science",
     "description": "Computer Science rocks"
+  },
+  {
+    "name": "Have a cat",
+    "description": "They are so cute!!!"
+  },
+  {
+      "name": "Go on a Interrail",
+    "description": "And have my friends go with me!"
+  },
+  {
+    "name": "Buy a big TV",
+    "description": "Because I have a big room!"
   }
 ]
