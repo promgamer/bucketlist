@@ -41,6 +41,11 @@ module.exports = {
     owner: {
       model: 'Person',
       required: true
+    },
+
+    active: {
+      type: 'boolean',
+      defaultsTo: true
     }
   },
 
@@ -51,50 +56,29 @@ module.exports = {
   },
 
   afterCreate: function (createdWish, cb) {
-    sails.log(createdWish);
 
-    History.create({action: 'CREATED', date: createdWish.createdAt, owner: createdWish.owner, wish: createdWish.id})
-      .then(function () {
-
+    Promise.all([
+      CommunityWish.findOne({id: createdWish.MainWish}),
+      History.create({action: 'CREATED', date: createdWish.createdAt, owner: createdWish.owner, wish: createdWish.id})
+    ])
+      .then(function (cw){
         if (createdWish.accepted) {
-          Promise.all([
-            CommunityWish.find({id: createdWish.MainWish})
-          ])
-            .spread(function (records) {
-              sails.log(records);
 
-              CommunityWish.update({id: records[0].id}, {numberOfWish: records[0].numberOfWish + 1})
-                .then(function () {
-                  cb();
-                })
-                .catch(function () {
-
-                  var now = new Date();
-
-                  sails.log("### CommunityWish numberOfCompleted NOT UPDATED - " + now + " ###");
-                  sails.log("#########################");
-                  cb();
-                });
-
-
-            })
-            .catch(function (err) {
-              console.log(err);
-              cb();
-            })
-            .done(function () {
-              console.log("Done!");
+          Wish.find({MainWish: createdWish.MainWish, active: true, accepted: true}).then(
+            function(res){
+              cw[0].numberOfWish = res.length;
+              cw[0].save(function(err, user) {
+              });
               cb();
             });
         }
       })
-      .catch(function () {
-        var now = new Date();
-
-        sails.log("### CREATED WISH NOT ADDED TO HISTORY TABLE - " + now + " ###");
+        .catch(function (err) {
+        sails.log(err);
+        sails.log("### ERRO BRUTAL ###");
         sails.log("#########################");
         cb();
-      });
+    });
   }
 };
 

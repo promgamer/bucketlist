@@ -56,7 +56,7 @@ angular.module('bucketlistApp')
     this.getUserHistory = function(userID){
     	var deferred = $q.defer();
 
-    	$http.get( serverURL + '/history?where={"owner": ' + userID + "}")
+    	$http.get( serverURL + '/fullhistory/' + userID )
     		.then(
     			function success(data){
     				deferred.resolve(data.data);
@@ -96,7 +96,7 @@ angular.module('bucketlistApp')
     		.then(
     			function success(data){
     				$sessionS.setUser(data.data);
-    				deferred(data.data);
+    				deferred.resolve(data.data);
     			},
     			function error(err){
     				deferred.reject(err);
@@ -111,7 +111,7 @@ angular.module('bucketlistApp')
     	$http.post(serverURL + "/wish", angular.extend({}, {MainWish: mainWishID, owner: userID, accepted: true}))
     		.then(
     			function success(data){
-    				deferred(data.data);
+    				deferred.resolve(data.data);
     			},
     			function error(err){
     				deferred.reject(err);
@@ -144,10 +144,10 @@ angular.module('bucketlistApp')
     this.removeUserWish = function(wishID){
     	var deferred = $q.defer();
 
-    	$http.delete(serverURL + "/wish/" + wishID)
+    	$http.delete(serverURL + "/wishDelete/" + wishID)
     		.then(
     			function success(data){
-    				deferred(data.data);
+    				deferred.resolve(data.data);
     			},
     			function error(err){
     				deferred.reject(err);

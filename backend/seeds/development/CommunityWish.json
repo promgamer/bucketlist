@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Go to the Eiffel Tower",
+    "description": "Maybe Eiffel Tower is too high?"
+  },
+  {
+    "name": "Climb the Everest",
+    "description": "I hope it's not too cold"
+  },
+  {
+    "name": "Help a stranger cross the street",
+    "description": "Simple things are the best!"
+  },
+  {
+    "name": "See the pope",
+    "description": "And go to Italy!"
+  },
+  {
+    "name": "Graduate in Computer Science",
+    "description": "Computer Science rocks"
+  },
+  {
+    "name": "Have a cat",
+    "description": "They are so cute!!!"
+  },
+  {
+      "name": "Go on a Interrail",
+    "description": "And have my friends go with me!"
+  },
+  {
+    "name": "Buy a big TV",
+    "description": "Because I have a big room!"
+  }
+]
