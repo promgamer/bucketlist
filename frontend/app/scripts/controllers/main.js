@@ -12,15 +12,27 @@ angular.module('bucketlistApp')
     $scope.userInfo = $sessionS.getUser();
     $scope.waitingForBucketList = true;
 
-
+    $scope.wishes = ["merda","marmelada", "moveis", "armas"];
 
     $api.getUserWishes($scope.userInfo.id)
       .then (
         function success (data){
-        	console.log(data);
+        	//console.log(data);
           $scope.userInfo.bucketList = data;
           $sessionS.setUser($scope.userInfo);
           $scope.waitingForBucketList = false;
+        },
+        function error (err){
+          $scope.waitingForBucketList = false;
+          console.error(err);
+        });
+
+      $api.getCommunintyWishes()
+      .then (
+        function success (data){
+        	//console.log(data);
+          $scope.wishes = data;
+          
         },
         function error (err){
           $scope.waitingForBucketList = false;
