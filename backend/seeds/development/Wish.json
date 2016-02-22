@@ -2,10 +2,41 @@
   {
     "MainWish": 1,
     "owner": 1,
+    "acceptedAt": "2016-02-21 23:00:00",
+    "doneAt": "2016-02-21 03:41:00"
+  },
+  {
+    "MainWish": 2,
+    "owner": 1,
+    "accepted": false,
+    "suggestedBy": 2
+  },
+  {
+    "MainWish": 3,
+    "owner": 1,
     "acceptedAt": "2016-02-21 23:00:00"
   },
   {
-    "MainWish": 1,
+    "MainWish": 4,
+    "owner": 1,
+    "acceptedAt": "2016-02-21 23:00:00",
+    "active": false
+  },
+  {
+    "MainWish": 5,
+    "owner": 1,
+    "acceptedAt": "2016-02-21 23:00:00",
+    "private": true
+  },
+  {
+    "MainWish": 6,
+    "owner": 1,
+    "accepted": true,
+    "acceptedAt": "2016-02-21 23:00:00",
+    "suggestedBy": 2
+  },
+  {
+    "MainWish": 2,
     "owner": 2,
     "acceptedAt": "2016-02-21 23:00:01"
   }
