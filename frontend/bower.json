@@ -11,7 +11,8 @@
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
     "ngstorage": "ng-storage#^0.4.2",
-    "textillate": "^0.4.0"
+    "textillate": "^0.4.0",
+    "bootstrap3-typeahead": "git://github.com/bassjobsen/Bootstrap-3-Typeahead.git#master"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

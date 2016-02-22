@@ -9,7 +9,7 @@ angular.module('bucketlistApp')
     this.login = function(email, password){
     	var deferred = $q.defer();
 
-    	$http.get(serverURL + "/person", angular.extend({},{email: email, password: password}))
+    	$http.get(serverURL + '/person?where={"email": ' + email + ', "password": ' + password + '}')
     		.then(
     			function success(user_info){
     				$sessionS.setUser(user_info.data[0]);
@@ -28,11 +28,11 @@ angular.module('bucketlistApp')
     	$http.get(serverURL + "/person/"+ userID)
     		.then(
     			function success(user_info){
-    				$sessionS.setUser(user_info.data[0]);
-    				deferred.resolve(user_info.data[0]);
+    				$sessionS.setUser(user_info.data);
+    				deferred.resolve(user_info.data);
     			},
     			function error(err){
-    				deferred.reject(err);
+     				deferred.reject(err);
     			});
 
 		return deferred.promise;
@@ -41,7 +41,7 @@ angular.module('bucketlistApp')
     this.getUserWishes = function(userID){
     	var deferred = $q.defer();
 
-    	$http.get( serverURL + "/wish" , angular.extend({},{ where: { owner: userID} }))
+    	$http.get( serverURL + '/wish?where={"owner":' + userID +"}")
     		.then(
     			function success(data){
     				deferred.resolve(data.data);
@@ -56,7 +56,7 @@ angular.module('bucketlistApp')
     this.getUserHistory = function(userID){
     	var deferred = $q.defer();
 
-    	$http.get( serverURL + "/history" , angular.extend({},{ where: { owner: userID} }))
+    	$http.get( serverURL + '/history?where={"owner": ' + userID + "}")
     		.then(
     			function success(data){
     				deferred.resolve(data.data);
@@ -131,7 +131,7 @@ angular.module('bucketlistApp')
     		    		},
     		    		function(e){
     		    			deferred.reject(e);
-    		    		});	
+    		    		});
     			},
     			function error(err){
     				deferred.reject(err);
