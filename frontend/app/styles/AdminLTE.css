@@ -33,6 +33,8 @@ a.logo {
   background-position: 58px 4px;
 }
 
+
+
 #main .box {
   background: rgba(255,255,255,.95);
 }
@@ -290,6 +292,9 @@ a:focus {
   .main-header .navbar-right > li {
     color: inherit;
     border: 0;
+  }
+  a.logo{
+    background-position-x: calc(50vw - 96px);
   }
 }
 .main-header .sidebar-toggle {

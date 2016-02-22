@@ -41,6 +41,11 @@ module.exports = {
     owner: {
       model: 'Person',
       required: true
+    },
+
+    active: {
+      type: 'boolean',
+      defaultsTo: true
     }
   },
 
