@@ -170,5 +170,20 @@ angular.module('bucketlistApp')
 
     	return deferred.promise;
     };
+
+    this.finishWish = function(wishID){
+    	var deferred = $q.defer();
+
+    	$http.put(serverURL + "/finishWish/"+wishID)
+    		.then(
+    			function success(data){
+    				deferred(data.data);
+    			},
+    			function error(err){
+    				deferred.reject(err);
+    			});
+
+    	return deferred.promise;
+    };
   }]
  );
