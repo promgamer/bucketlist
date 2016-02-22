@@ -43,7 +43,8 @@ module.exports.routes = {
   'put /makePublic' : 'WishController.makePublic',
   'put /makePrivate' : 'WishController.makePrivate',
   'get /mostUsedWish' : 'WishController.mostUsedWish',
-  'get /fullhistory/:owner' : 'HistoryController.PersonHistory'
+  'get /fullhistory/:owner' : 'HistoryController.PersonHistory',
+  'delete /wishDelete/:id' : 'WishController.deleteWish'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

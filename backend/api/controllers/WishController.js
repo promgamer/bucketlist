@@ -144,6 +144,27 @@ module.exports = {
     }
   },
 
+  deleteWish: function(req, res) {
+
+    var id = req.param('id');
+
+    Wish.update({id: id}, {active: false})
+      .then(function (wish) {
+
+        res.status(200);
+        res.send(wish);
+
+      })
+      .catch(function (err) {
+        res.send(err);
+
+        var now = new Date();
+        sails.log("### DELETE WISH ERROR - " + now + " ###");
+        sails.log.error(err);
+        sails.log("#########################");
+      })
+  },
+
   mostUsedWish: function(req, res) {
     var now = new Date();
 
