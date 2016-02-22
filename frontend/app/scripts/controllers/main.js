@@ -13,19 +13,39 @@ angular.module('bucketlistApp')
     $scope.waitingForBucketList = true;
 
     $scope.wishes = ["merda","marmelada", "moveis", "armas"];
+    $scope.removeUserWish = function (idWish) {
+		$api.removeUserWish(idWish);
+	};
+	$scope.tryAdd = function () {
+		var wishID = getWishID($scope.wishName, $scope.wishes);
+		if( wishID !== -1 )
+		{
+			$api.addUserWish($scope.userInfo.id,wishID);
+			updateUserWishes();
+		}
+		else console.log("criar nova");
+	};
+    
 
-    $api.getUserWishes($scope.userInfo.id)
-      .then (
-        function success (data){
-        	//console.log(data);
-          $scope.userInfo.bucketList = data;
-          $sessionS.setUser($scope.userInfo);
-          $scope.waitingForBucketList = false;
-        },
-        function error (err){
-          $scope.waitingForBucketList = false;
-          console.error(err);
-        });
+	function updateUserWishes() {
+		console.log("updating bucketList");
+		$scope.waitingForBucketList = true;
+		$api.getUserWishes($scope.userInfo.id)
+	      .then (
+	        function success (data){
+	        	//console.log(data);
+	          $scope.userInfo.bucketList = data;
+	          //$sessionS.setUser($scope.userInfo);
+	          $scope.waitingForBucketList = false;
+	          //$scope.$apply();
+	        },
+	        function error (err){
+	          $scope.waitingForBucketList = false;
+	          console.error(err);
+	        });
+	}
+    
+    updateUserWishes();
 
       $api.getCommunintyWishes()
       .then (
@@ -39,3 +59,12 @@ angular.module('bucketlistApp')
           console.error(err);
         });
   }]);
+
+function getWishID(obj,a) { // -1 if not exists
+    for (var i = 0; i < a.length; i++) {
+        if (a[i].name === obj) {
+            return a[i].id;
+        }
+    }
+    return -1;
+}
