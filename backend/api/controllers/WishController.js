@@ -148,7 +148,7 @@ module.exports = {
     });
   },
 
-  /*suggestions: function(req, res) {
+  suggestions: function(req, res) {
 
     var id = req.param("id");
     var now = new Date();
@@ -163,7 +163,7 @@ module.exports = {
       res.status(200);
       return res.send(suggestions);
     });
-  },*/
+  },
 
   acceptWish: function (req, res) {
 
