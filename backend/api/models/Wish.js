@@ -51,13 +51,18 @@ module.exports = {
 
   beforeCreate: function (wish, cb) {
     // SET UP DATE (acceptedAt IF NEEDED)
-
+/*
+    if(wish.suggestedBy != null)
+    {
+      wish.acceptedAt = new Date();
+    }
+*/
     cb();
   },
 
   afterCreate: function (createdWish, cb) {
 
-    Promise.all([
+    /*Promise.all([
       CommunityWish.findOne({id: createdWish.MainWish}),
       History.create({action: 'CREATED', date: createdWish.createdAt, owner: createdWish.owner, wish: createdWish.id})
     ])
@@ -70,6 +75,10 @@ module.exports = {
               cw[0].save(function(err, user) {
               });
               cb();
+            })
+            .catch(function(err){
+              sails.log(err);
+              cb();
             });
         }
       })
@@ -78,7 +87,7 @@ module.exports = {
         sails.log("### ERRO BRUTAL ###");
         sails.log("#########################");
         cb();
-    });
+    });*/cb();
   }
 };
 
