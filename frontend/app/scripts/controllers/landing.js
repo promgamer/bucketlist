@@ -14,7 +14,7 @@ angular.module('bucketlistApp')
   					$location.path('/home');
   				},
   				function(err){
-  					window.alert(err.status +": "+err.data);
+  					window.alert(err);
   				});
   	};
 

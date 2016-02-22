@@ -12,7 +12,7 @@ angular.module('bucketlistApp')
     	$http.get(serverURL + '/person?where={"email":"' + email + '","password":"' + password + '"}')
     		.then(
     			function success(user_info){
-    				if(user_info.data){
+    				if(user_info.data.length === 1 ){
 	    				$sessionS.setUser(user_info.data[0]);
 	    				deferred.resolve(user_info.data[0]);
 	    			}
