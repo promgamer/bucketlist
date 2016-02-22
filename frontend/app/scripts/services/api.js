@@ -162,7 +162,7 @@ angular.module('bucketlistApp')
     	$http.post(serverURL + "/wish", angular.extend({}, {MainWish: mainWishID, owner: userTo, suggestedBy: userFrom}))
     		.then(
     			function success(data){
-    				deferred(data.data);
+    				deferred.resolve(data.data);
     			},
     			function error(err){
     				deferred.reject(err);
@@ -177,7 +177,7 @@ angular.module('bucketlistApp')
     	$http.put(serverURL + "/finishWish/"+wishID)
     		.then(
     			function success(data){
-    				deferred(data.data);
+    				deferred.resolve(data.data);
     			},
     			function error(err){
     				deferred.reject(err);

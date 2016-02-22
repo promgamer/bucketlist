@@ -52,7 +52,7 @@
 
               <div ng-repeat="wish in userInfo.bucketList | filter:{ doneAt: null, active : true} track by $index" class="row text-center" style="margin-top: 10px">
                 <div class="col-xs-3 text-normal">
-                  <span onclick="" class="label label-success hoverable"><i class="fa fa-check"></i> I made it!</span>
+                  <span ng-click='completedWish(wish.id)' class="label label-success hoverable"><i class="fa fa-check"></i> I made it!</span>
                   <span ng-click='removeUserWish(wish.id)' class="label label-danger hoverable"><i class="fa fa-close"></i> Cancel</span>
                 </div>
                 <div class="col-md-3">
@@ -113,16 +113,47 @@
               <h3 class="box-title">Getting Started</h3>
             </div>
             <div class="box-body">
-              <h4>See our suggestions...</h4>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-plus"></i></span>
-                <input class="form-control" placeholder="Add here your new wish..." type="text">
-              </div>
-              <h4>... or de community</h4>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-plus"></i></span>
-                <input class="form-control" placeholder="Add here your new wish..." type="text">
-              </div>
+              
+              <h3>Sugested for you</h3>
+              <h4> Climb everest </h4>
+              <h4> Climb everest </h4>
+              <h4> Climb everest </h4>
+              <h4> Climb everest </h4>
+              <h3>Our top wishes...</h3>
+              <div>
+
+                    
+
+                    <div style="">
+                      <div class="info-box bg-aqua">
+                        <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">Climb Everest</span>
+                          <span class="info-box-number">41,410</span>
+                          <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                          </div>
+                          <span class="progress-description">
+                            Most Popular Wish
+                          </span>
+                        </div><!-- /.info-box-content -->
+                      </div>
+                      <div class="info-box bg-aqua">
+                        <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">Cenas cenas</span>
+                          <span class="info-box-number">41,410</span>
+                          <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                          </div>
+                          <span class="progress-description">
+                            70% Increase in 30 Days
+                          </span>
+                        </div><!-- /.info-box-content -->
+                      </div>
+                  
+                    </div>
+                </div><!-- /.box -->
             </div><!-- /.box-body -->
           </div>
         </div>
