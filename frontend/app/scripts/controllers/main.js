@@ -23,6 +23,17 @@ angular.module('bucketlistApp')
 		);
 		
 	};
+
+	$scope.completedWish = function (idWish) {
+    	$scope.waitingForBucketList = true;
+		$api.finishWish(idWish)
+		.then(function success(data) {
+			updateUserWishes();
+			}
+
+		);
+		
+	};
 	
 
 	$scope.tryAdd = function () {
@@ -43,6 +54,16 @@ angular.module('bucketlistApp')
 				console.log("criar nova");
 			}
 	};
+
+	$scope.add = function (wishID) {
+			$scope.waitingForBucketList = true;
+			$api.addUserWish($scope.userInfo.id,wishID)
+			.then(function success(data) {
+				updateUserWishes();
+				}
+
+			);
+	}
     
 
 	function updateUserWishes() {
