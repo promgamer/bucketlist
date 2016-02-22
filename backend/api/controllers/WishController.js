@@ -110,9 +110,15 @@ module.exports = {
   deleteWish: function(req, res) {
 
     var id = req.param('id');
+    var now = new Date();
 
-    Wish.update({id: id}, {active: false})
+
+    Promise.all([
+        Wish.update({id: id}, {active: false})
+      ])
       .then(function (wish) {
+
+        History.create({action: 'REMOVED', date: now, owner: wish[0].owner, wish: id})
 
         res.status(200);
         res.send(wish);
@@ -129,7 +135,6 @@ module.exports = {
   },
 
   mostUsedWish: function(req, res) {
-    var now = new Date();
 
     CommunityWish.find({sort: 'numberOfWish DESC', limit: 10}).exec(function (err, suggestions)
     {
