@@ -147,7 +147,7 @@ module.exports = {
   mostUsedWish: function(req, res) {
     var now = new Date();
 
-    CommunityWish.find({sort: 'numberOfWish', limit: 10}).exec(function (err, suggestions)
+    CommunityWish.find({sort: 'numberOfWish DESC', limit: 10}).exec(function (err, suggestions)
     {
       if(err) {
         res.status(400);
