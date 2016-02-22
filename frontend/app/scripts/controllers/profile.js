@@ -8,22 +8,24 @@ angular.module('bucketlistApp')
 
   	var foreign = true;
 
-  	function api_fetch(){ 
+  	function api_fetch(){
 	    // GET bucket list from BD
+
+
 	  	$api.getUserWishes($scope.userInfo.id)
 	      .then (
 	        function success (data){
 
 	          $scope.userInfo.bucketList = data;
-	           
+
 	          if(!foreign) {
-	          	$sessionS.setUser($scope.userInfo);
+
 	          }
 	          $scope.totalBucketListItems = 0;
-	          
+
 	          $scope.numberCompleted = 0;
 	          for (var i = 0; i < $scope.userInfo.bucketList.length; i++) {
-	             
+
                 if($scope.userInfo.bucketList[i].active)
                 {
                     $scope.totalBucketListItems++;
@@ -33,10 +35,10 @@ angular.module('bucketlistApp')
                       $scope.numberCompleted++;
                     }
                 }
-	              
-	            
+
+
 	            }
-	          
+
 	          $scope.numberToDo = $scope.totalBucketListItems - $scope.numberCompleted;
 	          $scope.waitingForBucketList = false;
 	        },
@@ -45,15 +47,16 @@ angular.module('bucketlistApp')
 	          $scope.waitingForBucketList = false;
 	        });
 
+
 		// GET history from bd
 		$api.getUserHistory($scope.userInfo.id)
 			.then (
 			function success (data){
-				
-			  $scope.userInfo.history = data;          
+
+			  $scope.userInfo.history = data;
 			  if(!foreign) {
-	          	$sessionS.setUser($scope.userInfo);
-	          }          
+
+	          }
 			  $scope.waitingForHistory = false;
 			},
 			function error (err){
@@ -69,6 +72,7 @@ angular.module('bucketlistApp')
   		$api.getUserProfile($routeParams.id)
   			.then(function(res){
   				$scope.userInfo = res;
+          $scope.mypage = false;
   				api_fetch();
   			}, function(err){
   				window.alert(err.status +": "+err.data);
@@ -80,9 +84,19 @@ angular.module('bucketlistApp')
   	}
   	else {
   		$scope.userInfo = $sessionS.getUser();
+      $scope.mypage = true;
   		api_fetch();
   		foreign = false;
   	}
+
+    $scope.add = function (wishID) {
+      $api.addUserWish($scope.userInfo.id,wishID)
+        .then(function success(data) {
+
+          }
+
+        );
+    }
 
   }]);
 

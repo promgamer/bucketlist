@@ -60,7 +60,7 @@
                 <div class="box-body">
                   <ul class="todo-list ui-sortable" >
 
-                    <li ng-repeat="wish in userInfo.bucketList | filter:{ active: true}">
+                    <li ng-repeat="wish in userInfo.bucketList | filter:{ active: true} track by $index">
 
                       <!-- checkbox -->
 
@@ -123,7 +123,7 @@
 
                         <i ng-if="timelineItem.action == 'CREATED'" class="fa fa-plus bg-yellow"></i>
                         <i ng-if="timelineItem.action == 'REMOVED'" class="fa fa-minus bg-red"></i>
-                        <i ng-if="timelineItem.action == 'ACCEPTED'" class="fa fa-plus bg-blue"></i>
+                        <i ng-if="timelineItem.action == 'SUGGESTED'" class="fa fa-plus bg-blue"></i>
                         <i ng-if="timelineItem.action == 'COMPLETED'" class="fa fa-check bg-green"></i>
 
 
@@ -134,19 +134,19 @@
                           <div class="timeline-body">
                            {{timelineItem.wish.MainWish.description}}
                           </div>
-                          <div class="timeline-footer">
-                            <a class="btn btn-primary btn-xs">Add to my List</a>
+                          <div ng-if="!mypage" class="timeline-footer">
+                            <a ng-click='add(timelineItem.wish.MainWish.id)' class="btn btn-primary btn-xs">Add to my List</a>
                           </div>
                         </div>
 
-                        <div ng-if="timelineItem.action == 'ACCEPTED'" class="timeline-item">
+                        <div ng-if="timelineItem.action == 'SUGGESTED'" class="timeline-item">
                           <span class="time"><i class="fa fa-clock-o"></i> {{timelineItem.date.substring(11, 16)}} {{timelineItem.date.substring(0, 10)}}</span>
-                          <h3 class="timeline-header">Sugestion <a href="#"> {{timelineItem.wish.MainWish.name}}</a> from <a> Pessoa que sugeriu</a> was accepted</h3>
+                          <h3 class="timeline-header">Sugestion <a href="#"> {{timelineItem.wish.MainWish.name}}</a> from <a> {{timelineItem.wish.suggestedBy.name}}</a> was accepted</h3>
                           <div class="timeline-body">
                            {{timelineItem.wish.MainWish.description}}
                           </div>
-                          <div class="timeline-footer">
-                            <a class="btn btn-primary btn-xs">Add to my List</a>
+                          <div ng-if="!mypage" class="timeline-footer">
+                            <a ng-click='add(timelineItem.wish.MainWish.id)' class="btn btn-primary btn-xs">Add to my List</a>
                           </div>
                         </div>
 
@@ -156,14 +156,14 @@
                           <div class="timeline-body">
                            {{timelineItem.wish.MainWish.description}}
                           </div>
-                          <div class="timeline-footer">
-                            <a class="btn btn-primary btn-xs">Add to my List</a>
+                          <div ng-if="!mypage" class="timeline-footer">
+                            <a ng-click='add(timelineItem.wish.MainWish.id)' class="btn btn-primary btn-xs">Add to my List</a>
                           </div>
                         </div>
 
                         <div ng-if="timelineItem.action == 'COMPLETED'" class="timeline-item">
                           <span class="time"><i class="fa fa-clock-o"></i>  {{timelineItem.date.substring(11, 16)}} {{timelineItem.date.substring(0, 10)}}</span>
-                          <h3 class="timeline-header no-border"> <i class="fa fa-trophy " style="color: Gold;"></i> <a > {{timelineItem.wish.MainWish.name}}</a> was completed! congratulations!!! <i class="fa fa-trophy " style="color: Gold;"></i> </h3>
+                          <h3 class="timeline-header no-border"> <i class="fa fa-trophy " style="color: Gold;"></i> <a ng-click='add(timelineItem.wish.MainWish.id)'> {{timelineItem.wish.MainWish.name}}</a> was completed! congratulations!!! <i class="fa fa-trophy " style="color: Gold;"></i> </h3>
                         </div>
 
 

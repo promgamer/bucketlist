@@ -6,6 +6,7 @@ angular.module('bucketlistApp')
 		this.setUser = function ( user ) {
 			$localStorage.userInfo = user;
 			$localStorage.$apply();
+      console.log("set userid");
 		};
 
 		this.getUser = function () {

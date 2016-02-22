@@ -33,7 +33,7 @@ angular.module('bucketlistApp')
     	$http.get(serverURL + "/person/"+ userID)
     		.then(
     			function success(user_info){
-    				$sessionS.setUser(user_info.data);
+    				//$sessionS.setUser(user_info.data);
     				deferred.resolve(user_info.data);
     			},
     			function error(err){

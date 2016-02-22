@@ -1,9 +1,14 @@
 'use strict';
 
 angular.module('bucketlistApp')
-	.controller('UserBadgeCtrl', ['$scope', '$location', 'SessionService', function ($scope, $location, $sessionS){
+	.controller('UserBadgeCtrl', ['$rootScope','$scope', '$location', 'SessionService', function ($rootScope, $scope, $location, $sessionS){
 		this.user_info = $sessionS.getUser();
 		$scope.info = this.user_info;
+
+    $rootScope.$on('user-updated', function(){
+      this.user_info = $sessionS.getUser();
+      $scope.info = this.user_info;
+    });
 
 		$scope.activeSession = $scope.info === null ? true : false;
 
