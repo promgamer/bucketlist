@@ -12,6 +12,5 @@ angular.module('bucketlistApp')
 			$location.path('/');
 			this.user_info = null;
 			$scope.info = null;
-			console.log("hey");
 		};
 	}]);
