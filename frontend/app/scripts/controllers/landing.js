@@ -10,6 +10,7 @@ angular.module('bucketlistApp')
   		$api.login($scope.userData.email, $scope.userData.password)
   			.then(
   				function(info){
+  					window.$('#myModal1').modal('hide');
   					$location.path('/home');
   				},
   				function(err){
@@ -25,6 +26,7 @@ angular.module('bucketlistApp')
   			photoURL: $scope.userData.photoURL === ''? null : $scope.userData.photoURL
   		}).then(
   		function(success){
+  			window.$('#myModal2').modal('hide');
   			$location.path('/home');
   		},
   		function(err){
