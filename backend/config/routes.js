@@ -42,6 +42,7 @@ module.exports.routes = {
   'put /acceptWish' : 'WishController.acceptWish',
   'put /makePublic' : 'WishController.makePublic',
   'put /makePrivate' : 'WishController.makePrivate',
+  'get /mostUsedWish' : 'WishController.mostUsedWish',
   'get /fullhistory/:owner' : 'HistoryController.PersonHistory'
   /***************************************************************************
   *                                                                          *
