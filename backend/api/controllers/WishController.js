@@ -148,6 +148,23 @@ module.exports = {
     });
   },
 
+  suggestions: function(req, res) {
+
+    var id = req.param("id");
+    var now = new Date();
+
+
+    Wish.find({accepted: false, suggestedBy: { '!': null }}).exec(function (err, suggestions)
+    {
+      if(err) {
+        res.status(400);
+        return res.negotiate(err);
+      }
+      res.status(200);
+      return res.send(suggestions);
+    });
+  },
+
   acceptWish: function (req, res) {
 
     var id = req.param("id");

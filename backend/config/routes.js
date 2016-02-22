@@ -44,7 +44,8 @@ module.exports.routes = {
   'put /makePrivate' : 'WishController.makePrivate',
   'get /mostUsedWish' : 'WishController.mostUsedWish',
   'get /fullhistory/:owner' : 'HistoryController.PersonHistory',
-  'delete /wishDelete/:id' : 'WishController.deleteWish'
+  'delete /wishDelete/:id' : 'WishController.deleteWish',
+  'get /mySuggestions/:id' : 'WishController.suggestions'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
