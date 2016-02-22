@@ -38,43 +38,6 @@ var Promise = require('bluebird');
 
 module.exports = {
 
-  /*findWithHistory: function (req, res) {
-
-    var ownerid = req.param('id');
-    var i = 0;
-
-    Wish.find({owner: ownerid}).populate('owner').populate('suggestedBy').populate('MainWish')
-      .then(function (toreturn) {
-
-        for (i = 0; i < toreturn.length; i++) {
-
-          var mwID = toreturn[i].MainWish.id;
-
-          Promise.all([
-            Wish.find({MainWish: mwID}),
-            Wish.find({MainWish: mwID, doneAt: {'!': null}}),
-            i
-          ])
-            .spread(function (total, completed, index) {
-              toreturn[index].completed;
-              toreturn[index].total;
-            })
-            .catch(function (err) {
-              console.log(err);
-            })
-            .done(function () {
-              console.log("Done!");
-            });
-
-        }
-        toreturn[0].fuck = 100;
-        res.send(toreturn);
-      })
-      .catch(function (err) {
-        sails.log.error(err);
-      });
-  },*/
-
   finishWish: function (req, res) {
 
     var id = req.param("id");
@@ -155,53 +118,26 @@ module.exports = {
       sails.log("### ACCEPT SUGGESTION ERROR - " + now + " ###");
       sails.log("ID is NULL or Undefined");
       sails.log("#########################");
+
     }
     else {
-      Wish.update({id: id}, {acceptedAt: now, accepted: true})
-        .then(function (wish) {
+      Promise.all([
+        Wish.update({id: id}, {acceptedAt: now, accepted: true})
+      ])
+        .then(function (wish){
 
-
-          Promise.all([
-            CommunityWish.find({id: createdWish.MainWish})
-          ])
-            .spread(function (records) {
-              sails.log(records);
-
-              CommunityWish.update({id: records[0].id}, {numberOfWish: records[0].numberOfWish + 1})
-                .then(function () {
-                  res.status(200);
-                  res.send(wish);
-                })
-                .catch(function () {
-
-                  var now = new Date();
-
-                  sails.log("### CommunityWish numberOfCompleted NOT UPDATED - " + now + " ###");
-                  sails.log("#########################");
-                  res.status(200);
-                  res.send(wish);
+            CommunityWish.findOne({id: wish.MainWish})
+              .then(function(res){
+                res.numberOfWish += 1;
+                res.save(function(err, user) {
                 });
-            })
-            .catch(function (err) {
-              console.log(err);
-              res.status(200);
-              res.send(wish);
-            })
-            .done(function () {
-              console.log("Done!");
-              res.status(200);
-              res.send(wish);
             });
         })
         .catch(function (err) {
-
-          res.send(err);
-
-          var now = new Date();
-          sails.log("### ACCEPT SUGGESTION ERROR - " + now + " ###");
-          sails.log.error(err);
+          sails.log(err);
+          sails.log("### ERRO BRUTAL ###");
           sails.log("#########################");
-        })
+        });
     }
   },
 

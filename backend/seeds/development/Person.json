@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Mike Pinto",
+    "email": "msp4ever@gmail.com",
+    "password": "password",
+    "photoURL": "https://scontent.flis1-1.fna.fbcdn.net/hphotos-xfa1/v/t1.0-9/11096491_1094419613907293_7179470210813491452_n.jpg?oh=5708d404253cbc332d805fc991083e9a&oe=575F50A3"
+  },
+  {
+    "name": "Miguel Cunha",
+    "email": "miguelfcunha@gmail.com",
+    "password": "password",
+    "photoURL": "https://scontent-lhr3-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/11181849_984802091532539_3862292596095526118_n.jpg?oh=7ef55512a7f5048044eb6b1a7b1795e9&oe=5754E5C9"
+  },
+  {
+    "name": "João Pinto",
+    "email": "joaopintomfc@gmail.com",
+    "password": "password",
+    "photoURL": "https://pt.linkedin.com/in/jo%C3%A3o-pinto-5ba922107"
+  },
+  {
+    "name": "Luís Araújo",
+    "email": "baixinho4646@gmail.com",
+    "password": "password",
+    "photoURL": "https://pt.linkedin.com/in/luis-ara%C3%BAjo-381010112"
+  }
+]
