@@ -66,7 +66,7 @@
 
                       <!--<i ng-if="wish.doneAt == null" class="fa fa-spinner fa-pulse fa-2x text-warning pull-right"></i> -->
 
-                      
+
                       <small ng-if="wish.doneAt !== null" class="label label-success pull-right"><i class="fa fa-check-circle fa-2x"></i> Completed</small>
 
                       <!-- todo text -->
@@ -76,7 +76,7 @@
                       <!-- General tools such as edit or delete-->
 
                     </li>
-                    
+
                   </ul>
                 </div><!-- /.box-body -->
 
@@ -88,7 +88,7 @@
                           <span class="info-box-text">Completed</span>
                           <span class="info-box-number">{{numberCompleted}} of {{totalBucketListItems}}</span>
                           <div class="progress">
-                            <div class="progress-bar" style="width: 60%"></div>
+                            <div class="progress-bar" style="width: {{numberCompleted/totalBucketListItems * 100}}%"></div>
                           </div>
                           <span class="progress-description">
                             Bucket List items acomplished
@@ -165,10 +165,10 @@
                           <span class="time"><i class="fa fa-clock-o"></i>  {{timelineItem.date.substring(11, 16)}} {{timelineItem.date.substring(0, 10)}}</span>
                           <h3 class="timeline-header no-border"> <i class="fa fa-trophy " style="color: Gold;"></i> <a > {{timelineItem.wish.MainWish.name}}</a> was completed! congratulations!!! <i class="fa fa-trophy " style="color: Gold;"></i> </h3>
                         </div>
-                      
+
 
                       </li>
-                      
+
 
                       <!-- END timeline item -->
                       <li>
