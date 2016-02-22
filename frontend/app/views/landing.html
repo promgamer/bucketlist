@@ -7,8 +7,8 @@
             <h3 class="text-shadow">The awesome things that you have to do before you die!</h3>
             <br>
 
-            <a href="#" class="btn btn-lg btn-black side-margin-and-padding-10"  data-toggle="modal" data-target="#myModal1">Sign up!</a>
-            <a href="#" class="btn btn-lg btn-dark side-margin-and-padding-10"  data-toggle="modal" data-target="#myModal2">Log in!</a>
+            <a class="btn btn-lg btn-black side-margin-and-padding-10"  data-toggle="modal" data-target="#myModal1">Log in!</a>
+            <a class="btn btn-lg btn-dark side-margin-and-padding-10"  data-toggle="modal" data-target="#myModal2">Sign up!</a>
             <!-- <a href="#about" class="btn btn-dark btn-lg">Find Out More</a> -->
         </div>
     </div>
@@ -157,13 +157,13 @@
 
                     <div class="login-box-body">
                         <p class="login-box-msg">Sign in to start your session</p>
-                        <form action="../../index2.html" method="post">
+                        <form ng-submit="landing.login()" method="post">
                             <div class="form-group has-feedback">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="email" ng-model="userData.email" class="form-control" placeholder="Email" required="required">
                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" ng-model="userData.password" class="form-control" placeholder="Password" required="required">
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                             </div>
                             <div class="row">
@@ -197,17 +197,21 @@
 
                     <div class="register-box-body">
                         <p class="login-box-msg">Register a new membership</p>
-                        <form action="../../index.html" method="post">
+                        <form ng-submit="landing.register()" method="post">
                             <div class="form-group has-feedback">
-                                <input type="text" class="form-control" placeholder="Full name">
+                                <input type="text" ng-model="userData.name" class="form-control" placeholder="Full name" required="required">
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="email" ng-model="userData.email" class="form-control" placeholder="Email" required="required">
                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="text" ng-model="userData.photoURL" class="form-control" placeholder="Photo Url">
+                                <span class="glyphicon glyphicon-link form-control-feedback"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="password" ng-model="userData.password" class="form-control" placeholder="Password" required="required">
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">

@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('bucketlistApp')
-  .controller('ProfileCtrl', ['$scope','$routeParams', '$timeout','API', 'SessionService', function ($scope, $routeParams, $timeout, $api, $sessionS) {
+  .controller('ProfileCtrl', ['$scope','$routeParams', '$timeout', '$location','API', 'SessionService', function ($scope, $routeParams, $timeout, $location, $api, $sessionS) {
+  	if( $sessionS.getUser() === undefined ){
+  		$location.path('/');
+  	}
+
   	var foreign = true;
 
   	function api_fetch(){ 
@@ -64,6 +68,7 @@ angular.module('bucketlistApp')
   			}, function(err){
   				window.alert(err.status +": "+err.data);
   				$scope.userInfo = $sessionS.getUser();
+  				api_fetch();
   			});
 
 	  	foreign = true;
