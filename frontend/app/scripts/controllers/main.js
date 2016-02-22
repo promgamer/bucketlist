@@ -8,7 +8,8 @@
  * Controller of the bucketlistApp
  */
 angular.module('bucketlistApp')
-  .controller('MainCtrl', ['$scope','API', 'SessionService', function ($scope, $api, $sessionS) {
+  .controller('MainCtrl', ['$scope','$location', 'API', 'SessionService', function ($scope, $location, $api, $sessionS) {
+    
     $scope.userInfo = $sessionS.getUser();
     $scope.waitingForBucketList = true;
 
