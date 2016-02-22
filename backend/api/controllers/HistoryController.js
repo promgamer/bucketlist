@@ -5,25 +5,51 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+
+var populate = function(record, idWish){
+
+    return new Promise(function(resolve, reject){
+
+      Wish.find({id: idWish}).populate('MainWish')
+        .then(function(completewishes){
+          resolve(completewishes[0]);
+        })
+        .catch(function(err){
+          sails.log.error(err);
+          reject();
+        });
+    });
+}
+
+
+
 module.exports = {
 
   PersonHistory: function(req, res){
 
     var owner = req.param('owner');
 
-    History.find({owner: owner}).populate('owner').populate('wish').exec(function (err, records) {
-      var i = 0;
+    History.find({owner: owner}).populate('owner').then(function(records) {
+      var objs = [];
+
       for(i = 0; i < records.length; i++){
-
-        Wish.find({id: records[i].wish.id}).populate('MainWish').exec(function (err, completewishes) {
-          records[i].wish = completewishes[0];
-        });
-
+        objs.push(
+                  populate(records[i], records[i].wish)
+        );
       }
-        return res.send(records);
+
+      Promise.all(objs)
+        .then(function (dataarray){
+          console.log(dataarray);
+          var i = 0;
+
+          for(i = 0; i < dataarray.length; i++){
+            records[i].wish = dataarray[i];
+          }
+
+          return res.send(records);
+        });
     });
-
   }
-
 };
 
