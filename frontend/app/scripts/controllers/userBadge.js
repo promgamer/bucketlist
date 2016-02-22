@@ -10,5 +10,8 @@ angular.module('bucketlistApp')
 		this.logout = function(){
 			$sessionS.logout();
 			$location.path('/');
+			this.user_info = null;
+			$scope.info = null;
+			console.log("hey");
 		};
 	}]);

@@ -12,8 +12,8 @@ angular.module('bucketlistApp')
     	$http.get(serverURL + '/person?where={"email": ' + email + ', "password": ' + password + '}')
     		.then(
     			function success(user_info){
-    				$sessionS.setUser(user_info.data[0]);
-    				deferred.resolve(user_info.data[0]);
+    				$sessionS.setUser(user_info.data);
+    				deferred.resolve(user_info.data);
     			},
     			function error(err){
     				deferred.reject(err);
@@ -95,6 +95,7 @@ angular.module('bucketlistApp')
     	$http.post( serverURL + '/person', angular.extend({}, {name: user.name, email: user.email, password: user.password, photoURL: user.photoURL? user.photoURL : null}))
     		.then(
     			function success(data){
+    				$sessionS.setUser(data.data);
     				deferred.resolve(data.data);
     			},
     			function error(err){
@@ -159,6 +160,21 @@ angular.module('bucketlistApp')
     	var deferred = $q.defer();
 
     	$http.post(serverURL + "/wish", angular.extend({}, {MainWish: mainWishID, owner: userTo, suggestedBy: userFrom}))
+    		.then(
+    			function success(data){
+    				deferred(data.data);
+    			},
+    			function error(err){
+    				deferred.reject(err);
+    			});
+
+    	return deferred.promise;
+    };
+
+    this.finishWish = function(wishID){
+    	var deferred = $q.defer();
+
+    	$http.put(serverURL + "/finishWish/"+wishID)
     		.then(
     			function success(data){
     				deferred(data.data);
