@@ -166,7 +166,7 @@ module.exports = {
     var now = new Date();
 
 
-    Wish.find({accepted: false, suggestedBy: { '!': null }}).exec(function (err, suggestions)
+    Wish.find({accepted: false, suggestedBy: { '!': null }}).populate('MainWish').populate('suggestedBy').exec(function (err, suggestions)
     {
       if(err) {
         res.status(400);
