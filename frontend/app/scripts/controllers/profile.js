@@ -11,20 +11,25 @@ angular.module('bucketlistApp')
 	        function success (data){
 
 	          $scope.userInfo.bucketList = data;
-	         
+	           
 	          if(!foreign) {
 	          	$sessionS.setUser($scope.userInfo);
 	          }
-	          $scope.totalBucketListItems = $scope.userInfo.bucketList.length;
+	          $scope.totalBucketListItems = 0;
 	          
 	          $scope.numberCompleted = 0;
-	          for (var i = 0; i < $scope.totalBucketListItems; i++) {
-	              
-	              if(null !== $scope.userInfo.bucketList[i].doneAt)
-	              {
+	          for (var i = 0; i < $scope.userInfo.bucketList.length; i++) {
+	             
+                if($scope.userInfo.bucketList[i].active)
+                {
+                    $scope.totalBucketListItems++;
+                    if(null !== $scope.userInfo.bucketList[i].doneAt )
+                    {
 
-	                $scope.numberCompleted++;
-	              }
+                      $scope.numberCompleted++;
+                    }
+                }
+	              
 	            
 	            }
 	          
@@ -40,7 +45,7 @@ angular.module('bucketlistApp')
 		$api.getUserHistory($scope.userInfo.id)
 			.then (
 			function success (data){
-				console.log(2);
+				
 			  $scope.userInfo.history = data;          
 			  if(!foreign) {
 	          	$sessionS.setUser($scope.userInfo);
@@ -75,6 +80,4 @@ angular.module('bucketlistApp')
   	}
 
   }]);
-
-
 

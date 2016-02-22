@@ -56,7 +56,7 @@ angular.module('bucketlistApp')
     this.getUserHistory = function(userID){
     	var deferred = $q.defer();
 
-    	$http.get( serverURL + '/history?where={"owner": ' + userID + "}")
+    	$http.get( serverURL + '/fullhistory/' + userID )
     		.then(
     			function success(data){
     				deferred.resolve(data.data);

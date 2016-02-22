@@ -47,7 +47,7 @@
             </div>
             <div class="box-body">
 
-              <div ng-repeat="wish in userInfo.bucketList | filter:{ doneAt: null } track by $index" class="row text-center" style="margin-top: 10px">
+              <div ng-repeat="wish in userInfo.bucketList | filter:{ doneAt: null, active : true} track by $index" class="row text-center" style="margin-top: 10px">
                 <div class="col-xs-3 text-normal">
                   <span onclick="" class="label label-success hoverable"><i class="fa fa-check"></i> I made it!</span>
                   <span ng-click='removeUserWish(wish.id)' class="label label-danger hoverable"><i class="fa fa-close"></i> Cancel</span>
@@ -76,7 +76,7 @@
 
              
 
-              <div ng-repeat="wish in userInfo.bucketList">
+              <div ng-repeat="wish in userInfo.bucketList | filter:{ active: true}">
                 <div ng-if="wish.doneAt !== null"  class="box box-default collapsed-box">
                   <div  class="box-header with-border">
                     <h3 class="box-title"><b> <i  class="fa fa-check"></i> {{wish.MainWish.name}} </b></h3>

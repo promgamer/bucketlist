@@ -14,14 +14,27 @@ angular.module('bucketlistApp')
 
     $scope.wishes = ["merda","marmelada", "moveis", "armas"];
     $scope.removeUserWish = function (idWish) {
-		$api.removeUserWish(idWish);
+		$api.removeUserWish(idWish)
+		.then(function success(data) {
+			updateUserWishes();
+			}
+
+		);
+		
 	};
+	
+
 	$scope.tryAdd = function () {
 		var wishID = getWishID($scope.wishName, $scope.wishes);
 		if( wishID !== -1 )
 		{
-			$api.addUserWish($scope.userInfo.id,wishID);
-			updateUserWishes();
+			$api.addUserWish($scope.userInfo.id,wishID)
+			.then(function success(data) {
+				updateUserWishes();
+				}
+
+			);
+			
 		}
 		else console.log("criar nova");
 	};
@@ -34,6 +47,7 @@ angular.module('bucketlistApp')
 	      .then (
 	        function success (data){
 	        	//console.log(data);
+
 	          $scope.userInfo.bucketList = data;
 	          //$sessionS.setUser($scope.userInfo);
 	          $scope.waitingForBucketList = false;
@@ -45,7 +59,7 @@ angular.module('bucketlistApp')
 	        });
 	}
     
-    updateUserWishes();
+   
 
       $api.getCommunintyWishes()
       .then (
@@ -58,6 +72,8 @@ angular.module('bucketlistApp')
           $scope.waitingForBucketList = false;
           console.error(err);
         });
+
+       updateUserWishes();
   }]);
 
 function getWishID(obj,a) { // -1 if not exists
