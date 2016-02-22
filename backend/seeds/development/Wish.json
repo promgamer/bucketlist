@@ -9,7 +9,6 @@
     "MainWish": 2,
     "owner": 1,
     "accepted": false
-    /*"suggestedBy": 2*/
   },
   {
     "MainWish": 3,
@@ -33,7 +32,6 @@
     "owner": 1,
     "accepted": true,
     "acceptedAt": "2016-02-21 23:00:00"
-    /*"suggestedBy": 2*/
   },
   {
     "MainWish": 2,
