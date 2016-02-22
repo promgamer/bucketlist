@@ -34,8 +34,7 @@ module.exports = {
     },
 
     suggestedBy: {
-      model: 'Person',
-      unique: true
+      model: 'Person'
     },
 
     owner: {
