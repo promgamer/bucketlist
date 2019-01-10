@@ -1,5 +1,5 @@
 # Bucketlist
-This is a 2-day project for Hackathon @ hack.summit(). Done using sailsJS and AngularJS.
+This is a 2-day project for Hackathon @ hack.summit() 2016. Done using sailsJS and AngularJS.
 
 # The Concept
 Bucketlist is a plataform that enables people to create, track their progress and share their bucketlist. Other users can/may suggest goals to other people, so they can add to their bucketlist.
